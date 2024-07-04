@@ -25,9 +25,27 @@ namespace Expences_Tracker.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        // GET: Transaction/Create
-        public IActionResult AddOrEdit(int id = 0)
+            var transaction = await _context.Transactions
+                .Include(t => t.Category)
+                .FirstOrDefaultAsync(m => m.TransactionId == id);
+
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+
+            return View(transaction);
+        }
+
+    // GET: Transaction/Create
+    public IActionResult AddOrEdit(int id = 0)
         {
             PopulateCategories();
             if (id == 0)

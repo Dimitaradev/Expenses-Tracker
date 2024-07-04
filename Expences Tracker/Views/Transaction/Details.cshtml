@@ -1,0 +1,53 @@
+﻿@model Expences_Tracker.Models.Transaction
+
+@{
+    ViewData["Title"] = "Transaction Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Transaction Id
+        </dt>
+        <dd class="col-sm-10">
+            @Model.TransactionId
+        </dd>
+        <dt class="col-sm-2">
+            Category
+        </dt>
+        <dd class="col-sm-10">
+            @Model.CategoryTitleWithIcon
+        </dd>
+        <dt class="col-sm-2">
+            Amount
+        </dt>
+        <dd class="col-sm-10">
+            @Model.FormatedAmount
+        </dd>
+        <dt class="col-sm-2">
+            Note
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Note
+        </dd>
+        <dt class="col-sm-2">
+            Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Date.ToString("d")
+        </dd>
+    </dl>
+</div>
+
+<div class="card-footer text-right">
+    <a asp-action="Edit" asp-route-id="@Model.TransactionId" class="btn btn-primary me-2">
+        <i class="fa-solid fa-pen me-1"></i> Edit
+    </a>
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="fa-solid fa-arrow-left me-1"></i> Back to List
+    </a>
+</div>
